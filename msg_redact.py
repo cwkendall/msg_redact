@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     messages = client.messages.list(to=args.to_number, from_=args.from_number, date_sent_after=args.begin_date, date_sent_before=args.end_date)
     for msg in messages:
-        print('\rfetched={} processed={} redacted={} deleted={}'.format(found, processed, redacted, deleted), end='', flush=True)
+        print('\rfetched={} processed={} redacted={} deleted={}\t'.format(found, processed, redacted, deleted), end='', flush=True)
         found = found +1
         newbody = '***HIDDEN***'
         if args.unhide:
@@ -64,9 +64,9 @@ if __name__ == '__main__':
                 print('--- SKIPPING ---')
             continue
         if args.verbose >= 2:
-            print('\tfrom={} to={}'.format(newfrom, newto), end=' ')
+            print('from={} to={}'.format(newfrom, newto), end=' ')
         if args.verbose >= 3:
-            print('\tbody={}'.format(newbody))
+            print('body={}'.format(newbody))
         elif args.verbose > 0:
             print()
         processed = processed+1
